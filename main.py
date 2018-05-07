@@ -48,7 +48,7 @@ try:
 			GPIO.output(buzzer,True)
 			print "Motion Detected"
 			while GPIO.input(sensor):
-			time.sleep(0.2)
+				time.sleep(0.2)
 		else:
 			GPIO.output(buzzer,False)
 

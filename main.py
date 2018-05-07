@@ -30,14 +30,15 @@ print ("Initialising PIR Sensor.....")
 time.sleep(12)
 print ("PIR Ready", "\n")
 
-while True:
-      if GPIO.input(sensor):
-          GPIO.output(buzzer,True)
-          print "Motion Detected"
-          while GPIO.input(sensor):
-              time.sleep(0.2)
-      else:
-          GPIO.output(buzzer,False)
+try:
+	while True:
+	      if GPIO.input(sensor):
+		  GPIO.output(buzzer,True)
+		  print "Motion Detected"
+		  while GPIO.input(sensor):
+		      time.sleep(0.2)
+	      else:
+		  GPIO.output(buzzer,False)
 
 except KeyboardInterrupt:
     GPIO.cleanup()

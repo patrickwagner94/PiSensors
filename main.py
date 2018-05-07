@@ -39,7 +39,7 @@ def pushToFirebase():
 GPIO.output(buzzer,False)
 print ("Initialising PIR Sensor.....")
 time.sleep(5)
-print ("PIR Ready)
+print ("PIR Ready")
 
 try:
 	while True:

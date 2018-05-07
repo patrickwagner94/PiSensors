@@ -27,8 +27,8 @@ GPIO.setup(buzzer, GPIO.OUT)
 
 GPIO.output(buzzer,False)
 print ("Initialising PIR Sensor.....")
-time.sleep(12)
-print ("PIR Ready", "\n")
+time.sleep(5)
+print ("PIR Ready)
 
 try:
 	while True:

@@ -33,8 +33,8 @@ def printDateTime():
 
 def pushToFirebase():
 	currentDate, currentTime = printDateTime()
-	result = firebase.post('/Smoke_Kitchen', {'date':currentDate, 'status':'Active', 'time':currentTime})
-	#print(result)
+	firebase.post('/Motion_LivingRoom', {'date':currentDate, 'status':'Active', 'time':currentTime})
+	firebase.post('/Motion_Status', {'status':'Active'})
 
 GPIO.output(buzzer,False)
 print ("Initialising PIR Sensor.....")
@@ -46,9 +46,12 @@ try:
 		if GPIO.input(sensor):
 			pushToFirebase()
 			GPIO.output(buzzer,True)
-			#print "Motion Detected"
-			while GPIO.input(sensor):
-				time.sleep(0.2)
+			result = firebase.get('/Motion_Status',None)
+			if result != 'Active':
+				GPIO.output(buzzer,False)
+#			print "Motion Detected"
+#			while GPIO.input(sensor):
+#				time.sleep(0.2)
 #		else:
 #			GPIO.output(buzzer,False)
 

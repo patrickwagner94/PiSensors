@@ -5,7 +5,7 @@
 import RPi.GPIO as GPIO
 
 # import library for customisable date and time formats
-#import datetime
+import datetime
 
 #import time library for sleep function
 import time
@@ -34,7 +34,7 @@ def printDateTime():
 def pushToFirebase():
 	currentDate, currentTime = printDateTime()
 	result = firebase.post('/Smoke_Kitchen', {'date':currentDate, 'status':'Active', 'time':currentTime})
-	print(result)
+	#print(result)
 
 GPIO.output(buzzer,False)
 print ("Initialising PIR Sensor.....")
@@ -46,11 +46,11 @@ try:
 		if GPIO.input(sensor):
 			pushToFirebase()
 			GPIO.output(buzzer,True)
-			print "Motion Detected"
+			#print "Motion Detected"
 			while GPIO.input(sensor):
 				time.sleep(0.2)
-		else:
-			GPIO.output(buzzer,False)
+#		else:
+#			GPIO.output(buzzer,False)
 
 except KeyboardInterrupt:
     GPIO.cleanup()

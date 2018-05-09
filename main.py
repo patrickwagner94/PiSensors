@@ -34,7 +34,7 @@ def printDateTime():
 def pushToFirebase():
 	currentDate, currentTime = printDateTime()
 	firebase.post('/Motion_LivingRoom', {'date':currentDate, 'status':'active', 'time':currentTime})
-	firebase.post('/Motion_Status', {'status':'active'})
+	firebase.patch('/Motion_Status', {'status':'active'})
 
 GPIO.output(buzzer,False)
 print ("Initialising PIR Sensor.....")

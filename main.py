@@ -43,12 +43,14 @@ print ("PIR Ready")
 
 try:
 	while True:
-		result = firebase.get('/Motion_Status',None)
+		result = firebase.get('/Motion_Status')
+		print (result)
 		if result != 'home':
 			if GPIO.input(sensor):
 				pushToFirebase()
 				GPIO.output(buzzer,True)
-			result = firebase.get('/Motion_Status',None)
+			result = firebase.get('/Motion_Status')
+			print (result)
 			if result != 'active':
 				GPIO.output(buzzer,False)
 	#			print "Motion Detected"
